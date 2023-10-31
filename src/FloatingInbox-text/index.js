@@ -264,16 +264,14 @@ export function FloatingInbox({
             "FloatingInbox " +
             (isOpen ? "spin-clockwise" : "spin-counter-clockwise")
           }
-          style={styles.FloatingLogo}
-        >
+          style={styles.FloatingLogo}>
           💬
         </div>
       )}
       {isOpen && (
         <div
           style={styles.uContainer}
-          className={" " + (isOnNetwork ? "expanded" : "")}
-        >
+          className={" " + (isOnNetwork ? "expanded" : "")}>
           {isConnected && (
             <button style={styles.logoutBtn} onClick={handleLogout}>
               Logout
@@ -287,8 +285,7 @@ export function FloatingInbox({
                     style={styles.backButton}
                     onClick={() => {
                       setSelectedConversation(null);
-                    }}
-                  >
+                    }}>
                     ←
                   </button>
                 )}
@@ -303,9 +300,9 @@ export function FloatingInbox({
                 <button style={styles.btnXmtp} onClick={connectWallet}>
                   Connect Wallet
                 </button>
-                <button style={styles.label} onClick={createNewWallet}>
+                <div style={styles.label} onClick={createNewWallet}>
                   or create new one
-                </button>
+                </div>
               </div>
             )}
             {isConnected && !isOnNetwork && (
@@ -357,7 +354,7 @@ export const loadKeys = (walletAddress) => {
 export const storeKeys = (walletAddress, keys) => {
   localStorage.setItem(
     buildLocalStorageKey(walletAddress),
-    Buffer.from(keys).toString(ENCODING)
+    Buffer.from(keys).toString(ENCODING),
   );
 };
 

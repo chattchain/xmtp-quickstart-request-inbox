@@ -99,6 +99,7 @@ export const ListConversations = ({
           .includes(searchTerm.toLowerCase()) &&
         conversation?.peerAddress !== client.address
     );
+
     const allowed = filteredConversations.filter(
       (conversation) => conversation.consentState === "allowed"
     );

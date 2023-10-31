@@ -2,7 +2,7 @@
 
 Managing user consent is essential for enhancing privacy and user experience. If you already have an XMTP application, integrating portable consent features becomes crucial. This guide walks you through adding the consent logic to your existing XMTP app.
 
-![](requests.png)
+![](video.gif)
 
 #### Initialize XMTP Client with Consent
 

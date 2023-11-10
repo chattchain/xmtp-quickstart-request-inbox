@@ -4,23 +4,6 @@ Managing user consent is essential for enhancing privacy and user experience. If
 
 ![](video.gif)
 
-<div
-  style={{
-    display: "flex",
-    justifyContent: "space-evenly",
-    textAlign: "center",
-    marginTop: "20px",
-  }}
->
-  <h3 style={{ width: "50%" }}>**Without Consent**</h3>
-  <h3 style={{ width: "50%" }}>**With Consent**</h3>
-</div>
-
-<div className="widget-container" style={{ padding: "0px", height: "400px" }}>
-  <FloatingInbox env="production" isContained={true} isConsent={false} />
-  <FloatingInbox env="production" isContained={true} isConsent={true} />
-</div>
-
 #### Initialize XMTP Client with Consent
 
 Here's your existing `initXmtp` function, updated to include the consent refresh logic.

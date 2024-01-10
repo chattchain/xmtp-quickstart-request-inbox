@@ -116,6 +116,16 @@ const handleBlock = async () => {
 };
 ```
 
+#### Reminder: Keep Consent State Synchronized
+
+Always remember to keep your application's consent state synchronized with the network. To achieve this, make sure to:
+
+- Call `await xmtp.contacts.refreshConsentList();` before performing any consent-related actions.
+- Refresh the consent list when initializing the XMTP client and when opening a conversation.
+- Implement periodic refreshes of the consent list during the application's runtime, especially if it remains open for extended periods or if there are triggers indicating potential changes in consent state.
+
+By adhering to these practices, you ensure that your application respects the latest user consent preferences and maintains consistency with the network's consent state.
+
 #### Conclusion
 
 Consent has really evolved through the years. It started with email, then email marketing, and was the wild west until laws like GPDR stepped in. This is new chapter in the history of consent in this new era of privacy, portability, and ownership.

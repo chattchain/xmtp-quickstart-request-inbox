@@ -16,7 +16,7 @@ Before diving into the code let's consider important aspects while integrating c
 
 #### Initialize XMTP Client with Consent
 
-Here's your existing `initXmtp` function, updated to include the consent refresh logic.
+Here's your existing `initXmtpWithKeys` function, updated to include the consent refresh logic.
 
 ```jsx
 const initXmtpWithKeys = async function () {

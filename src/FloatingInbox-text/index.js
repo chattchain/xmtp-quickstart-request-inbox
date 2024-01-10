@@ -247,12 +247,13 @@ export function FloatingInbox({
       useSnap: true,
       //Cosent enabled by default
     });
-    setClient(xmtp);
-    setIsOnNetwork(!!xmtp.address);
     if (isConsent) {
       //Refresh consent
+      console.log("list refresh");
       await xmtp.contacts.refreshConsentList();
     }
+    setClient(xmtp);
+    setIsOnNetwork(!!xmtp.address);
   };
 
   return (

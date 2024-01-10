@@ -120,10 +120,10 @@ const handleBlock = async () => {
 
 **Always synchronize consent states:** Before updating consent preferences on the network, ensure you refresh the consent list with `await xmtp.contacts.refreshConsentList();`. Update the network's consent list only in these scenarios:
 
-- **User Denies Contact:** Set to "denied" if a user blocks or unsubscribes.
-- **User Allows Contact:** Set to "allowed" if a user subscribes or enables notifications.
+- **User Denies Contact:** Set to `denied` if a user blocks or unsubscribes.
+- **User Allows Contact:** Set to `allowed` if a user subscribes or enables notifications.
 - **Legacy Preferences:** Align the network with any existing local preferences.
-- **User Response:** Set to "allowed" if the user has engaged in conversation.
+- **User Response:** Set to `allowed` if the user has engaged in conversation.
 
 Neglecting these guidelines can result in consent state conflicts and compromise user privacy.
 

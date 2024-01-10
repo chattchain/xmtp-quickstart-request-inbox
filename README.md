@@ -116,15 +116,16 @@ const handleBlock = async () => {
 };
 ```
 
-#### Reminder: Keep Consent State Synchronized
+## Caution :warning:
 
-Always remember to keep your application's consent state synchronized with the network. To achieve this, make sure to:
+**Always synchronize consent states:** Before updating consent preferences on the network, ensure you refresh the consent list with `await xmtp.contacts.refreshConsentList();`. Update the network's consent list only in these scenarios:
 
-- Call `await xmtp.contacts.refreshConsentList();` before performing any consent-related actions.
-- Refresh the consent list when initializing the XMTP client and when opening a conversation.
-- Implement periodic refreshes of the consent list during the application's runtime, especially if it remains open for extended periods or if there are triggers indicating potential changes in consent state.
+- **User Denies Contact:** Set to "denied" if a user blocks or unsubscribes.
+- **User Allows Contact:** Set to "allowed" if a user subscribes or enables notifications.
+- **Legacy Preferences:** Align the network with any existing local preferences.
+- **User Response:** Set to "allowed" if the user has engaged in conversation.
 
-By adhering to these practices, you ensure that your application respects the latest user consent preferences and maintains consistency with the network's consent state.
+Neglecting these guidelines can result in consent state conflicts and compromise user privacy.
 
 #### Conclusion
 

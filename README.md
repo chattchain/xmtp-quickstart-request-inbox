@@ -6,7 +6,7 @@ Managing user consent is essential for enhancing privacy and user experience. If
 
 ## Considerations
 
-Before diving into the code let's consider important aspects while integrating consent features. For example, before making an allow or block action you should synchronize the updated consent list in order to prevent overwriting network consent from another app. For more details head to these sections of our docs:
+Before diving into the code let's consider important aspects while integrating consent features. For example, before making an allow or block action you should synchronize the updated consent list in order to **prevent overwriting network** consent from another app. For more details head to these sections of our docs:
 
 - [Understand user consent preferences](https://xmtp.org/docs/build/user-consent#understand-user-consent-preferences): Here are some of the ways user consent preferences are set
 - [Use consent preferences to respect user intent](https://xmtp.org/docs/build/user-consent#use-consent-preferences-to-respect-user-intent): Your app should aim to handle consent preferences appropriately because they are an expression of user intent.
@@ -22,7 +22,7 @@ Here's your existing `initXmtp` function, updated to include the consent refresh
 const initXmtpWithKeys = async function () {
   // ... previous code
   const xmtp = await Client.create(wallet);
-  // Add these lines to refresh the consent list
+  // Refresh the consent list to make sure your application is up-to-date with the network
   await xmtp.contacts.refreshConsentList();
 };
 ```
@@ -70,7 +70,7 @@ To ensure that your application respects the latest user consent preferences, it
 ```jsx
 // Function to select and open a conversation
 const openConversation = async (conversation) => {
-  // Refresh the consent list to ensure the application is up-to-date
+  // Refresh the consent list to make sure your application is up-to-date with the network
   await client.contacts.refreshConsentList();
   // Now it's safe to open the conversation
   setSelectedConversation(conversation);
@@ -89,11 +89,13 @@ const [showPopup, setShowPopup] = useState(
 
 // Function to handle the acceptance of a contact
 const handleAccept = async () => {
+  // Refresh the consent list first
+  await client.contacts.refreshConsentList();
   // Allow the contact
   await client.contacts.allow([conversation.peerAddress]);
   // Hide the popup
   setShowPopup(false);
-  // Refresh the consent list
+  // Refresh the consent list to make sure your application is up-to-date with the network
   await client.contacts.refreshConsentList();
   // Log the acceptance
   console.log("accepted", conversation.peerAddress);
@@ -101,6 +103,8 @@ const handleAccept = async () => {
 
 // Function to handle the blocking of a contact
 const handleBlock = async () => {
+  // Refresh the consent list first
+  await client.contacts.refreshConsentList();
   // Block the contact
   await client.contacts.deny([conversation.peerAddress]);
   // Hide the popup

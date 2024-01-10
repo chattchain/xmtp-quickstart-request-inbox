@@ -88,6 +88,9 @@ export const ConversationContainer = ({
   };
 
   const selectConversation = async (conversation) => {
+    // Refresh the consent list first
+    await client.contacts.refreshConsentList();
+    // Now it's safe to open the conversation
     setSelectedConversation(conversation);
   };
 
@@ -193,8 +196,7 @@ export const ConversationContainer = ({
               style={styles.createNewButton}
               onClick={() => {
                 setSelectedConversation({ messages: [] });
-              }}
-            >
+              }}>
               Create new conversation
             </button>
           )}

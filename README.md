@@ -14,6 +14,8 @@ Before diving into the code let's consider important aspects while integrating c
 
 ## Tutorial
 
+Please refer to the XMTP documentation for comprehensive information regarding the implementation.
+
 - [Initialize XMTP Client with Consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
 - [Filtering conversations based on consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)

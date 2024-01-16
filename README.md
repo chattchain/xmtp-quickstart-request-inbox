@@ -14,17 +14,17 @@ Before diving into the code let's consider important aspects while integrating c
 
 ## Tutorial
 
-- [Initialize XMTP Client with Consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Initialize XMTP Client with Consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
-- [Filtering conversations based on consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Filtering conversations based on consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
-- [Request inbox](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Request inbox](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
-- [Refresh consent when opening a conversation](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Refresh consent when opening a conversation](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
-- [Allow and denied actions](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Allow and denied actions](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
-- [Updating consent on message send](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
+- [Updating consent on message send](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox#tutorial)
 
 ## Caution :warning:
 

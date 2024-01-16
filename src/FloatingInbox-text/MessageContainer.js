@@ -152,7 +152,11 @@ export const MessageContainer = ({
       return;
     }
     if (conversation && conversation.peerAddress) {
-      // Sending a message will implicitly set the consent state to "allowed"
+      // Refresh the consent list first
+      await client.contacts.refreshConsentList();
+      // Update the consent state to "allowed"
+      await client.contacts.allow([conversation.peerAddress]);
+      // Send the message
       await conversation.send(newMessage);
     } else if (conversation) {
       // Crearting a new conversation also sets the consent state to "allowed"

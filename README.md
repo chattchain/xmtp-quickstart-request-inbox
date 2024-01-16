@@ -12,113 +12,23 @@ Before diving into the code let's consider important aspects while integrating c
 - [Use consent preferences to respect user intent](https://xmtp.org/docs/build/user-consent#use-consent-preferences-to-respect-user-intent): Your app should aim to handle consent preferences appropriately because they are an expression of user intent.
 - [Synchronize user consent preferences](https://xmtp.org/docs/build/user-consent#synchronize-user-consent-preferences):All apps that use the user consent feature must adhere to the logic described in this section to keep the consent list on the network synchronized with local app user consent preferences, and vice versa.
 
-## Quickstart
+## Tutorial
 
-#### Initialize XMTP Client with Consent
+- [Initialize XMTP Client with Consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
-Here's your existing `initXmtpWithKeys` function, updated to include the consent refresh logic.
+- [Filtering conversations based on consent](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
-```jsx
-const initXmtpWithKeys = async function () {
-  // ... previous code
-  const xmtp = await Client.create(wallet);
-  // Refresh the consent list to make sure your application is up-to-date with the network
-  await xmtp.contacts.refreshConsentList();
-};
-```
+- [Request inbox](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
-#### Filtering conversations based on consent
+- [Refresh consent when opening a conversation](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
-Using the `consentState` property of the conversation object, you can filter the conversations based on consent.
+- [Allow and denied actions](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
-```jsx
-// Filtering based on consent state
-const allowed = conversations.filter(
-  (conversation) => conversation.consentState === "allowed",
-);
-const requests = conversations.filter(
-  (conversation) => conversation.consentState === "unknown",
-);
-```
-
-#### Request inbox
-
-You can now create a separate inbox for requests. This inbox will only show the conversations that have not been allowed yet.
-
-```jsx
-{
-  activeTab === "requests" ? (
-    <button
-      style={styles.conversationListItem}
-      onClick={() => setActiveTab("allowed")}>
-      ← Allowed
-    </button>
-  ) : (
-    <button
-      style={styles.conversationListItem}
-      onClick={() => setActiveTab("requests")}>
-      Requests →
-    </button>
-  );
-}
-```
-
-#### Refresh consent when opening a conversation
-
-To ensure that your application respects the latest user consent preferences, it's important to refresh the consent state every time a conversation is opened. This can be done by calling the `refreshConsentList` method of the XMTP client before any interaction within a conversation occurs.
-
-```jsx
-// Function to select and open a conversation
-const openConversation = async (conversation) => {
-  // Refresh the consent list to make sure your application is up-to-date with the network
-  await client.contacts.refreshConsentList();
-  // Now it's safe to open the conversation
-  setSelectedConversation(conversation);
-};
-```
-
-#### Allow and denied actions
-
-Every time you open a conversation on the request tab you can show a popup with the allow and deny actions. You can use the `consentState` property of the conversation object to show the popup only when the consent state is `unknown`.
-
-```jsx
-// Inside your MessageContainer component
-const [showPopup, setShowPopup] = useState(
-  conversation.consentState === "unknown",
-);
-
-// Function to handle the acceptance of a contact
-const handleAccept = async () => {
-  // Refresh the consent list first
-  await client.contacts.refreshConsentList();
-  // Allow the contact
-  await client.contacts.allow([conversation.peerAddress]);
-  // Hide the popup
-  setShowPopup(false);
-  // Refresh the consent list to make sure your application is up-to-date with the network
-  await client.contacts.refreshConsentList();
-  // Log the acceptance
-  console.log("accepted", conversation.peerAddress);
-};
-
-// Function to handle the blocking of a contact
-const handleBlock = async () => {
-  // Refresh the consent list first
-  await client.contacts.refreshConsentList();
-  // Block the contact
-  await client.contacts.deny([conversation.peerAddress]);
-  // Hide the popup
-  setShowPopup(false);
-  // Refresh the consent list
-  await client.contacts.refreshConsentList();
-  // Log the blocking
-  console.log("denied", conversation.peerAddress);
-};
-```
+- [Updating consent on message send](https://junk-range-possible-git-portableconsenttutorials-xmtp-labs.vercel.app/docs/tutorials/portable-consent/request-inbox-rn#tutorial)
 
 ## Caution :warning:
 
-**Always synchronize consent states:** Before updating consent preferences on the network, ensure you refresh the consent list with `await xmtp.contacts.refreshConsentList();`. Update the network's consent list only in these scenarios:
+**Always synchronize consent states:** Before updating consent preferences on the network, ensure you refresh the consent list with `refreshConsentList`. Update the network's consent list only in these scenarios:
 
 - **User Denies Contact:** Set to `denied` if a user blocks or unsubscribes.
 - **User Allows Contact:** Set to `allowed` if a user subscribes or enables notifications.

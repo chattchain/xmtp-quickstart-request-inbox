@@ -129,8 +129,7 @@ export const ListConversations = ({
         <button
           style={{
             ...styles.conversationListItem,
-            backgroundColor: "lightgreen",
-            fontSize: "12px",
+            width: "100%",
             padding: "5px",
           }}
           onClick={() => setActiveTab("allowed")}>
@@ -140,12 +139,11 @@ export const ListConversations = ({
         <button
           style={{
             ...styles.conversationListItem,
-            backgroundColor: "orange",
-            fontSize: "12px",
+            width: "100%",
             padding: "5px",
           }}
           onClick={() => setActiveTab("requests")}>
-          Requests →
+          <div style={styles.conversationDetails}>Requests →</div>
         </button>
       )}
       {(activeTab === "allowed" || !activeTab) &&

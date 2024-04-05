@@ -1,18 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { FloatingInbox } from "./FloatingInbox-text";
-
 import { ethers } from "ethers";
-
-const InboxPage = () => {
+const InboxPage = ({ isPWA = false }) => {
   const [signer, setSigner] = useState(null);
   const [walletConnected, setWalletConnected] = useState(false); // Add state for wallet connection
 
+  const disconnectWallet = () => {
+    localStorage.removeItem("walletConnected");
+    localStorage.removeItem("signerAddress");
+    setSigner(null);
+    setWalletConnected(false);
+  };
+
   const styles = {
-    homePageWrapper: {
+    uContainer: {
+      height: "100vh",
+      backgroundColor: "#f9f9f9",
+      borderRadius: "10px",
+      boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+      zIndex: "1000",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+    },
+    xmtpContainer: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+    },
+    btnXmtp: {
+      backgroundColor: "#f0f0f0",
+      display: "flex",
+      alignItems: "center",
+      textDecoration: "none",
+      color: "#000",
+      justifyContent: "center",
+      border: "1px solid grey",
+      padding: "10px",
+      borderRadius: "5px",
+      fontSize: "14px",
+    },
+    HomePageWrapperStyle: {
       textAlign: "center",
       marginTop: "2rem",
     },
-    buttonStyled: {
+    ButtonStyledStyle: {
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
@@ -27,13 +60,6 @@ const InboxPage = () => {
       backgroundColor: "#ededed",
       fontSize: "12px",
     },
-  };
-
-  const disconnectWallet = () => {
-    localStorage.removeItem("walletConnected");
-    localStorage.removeItem("signerAddress");
-    setSigner(null);
-    setWalletConnected(false);
   };
 
   const getAddress = async (signer) => {
@@ -76,26 +102,50 @@ const InboxPage = () => {
   }, []);
 
   return (
-    <div style={styles.homePageWrapper}>
-      <button
-        className="home-button"
-        style={{ ...styles.buttonStyled, marginLeft: 10 }}
-        onClick={() => connectWallet()}>
-        {walletConnected ? "Connected" : "Connect Wallet"}
-      </button>
-      {walletConnected && (
-        <button
-          className="home-button"
-          style={{ ...styles.buttonStyled, marginLeft: 10 }}
-          onClick={() => disconnectWallet()}>
-          Logout
-        </button>
-      )}
-      <h1>FloatingInbox </h1>
+    <>
+      {!isPWA && (
+        <div style={styles.HomePageWrapperStyle}>
+          <button
+            className="home-button"
+            style={{ ...styles.ButtonStyledStyle, marginLeft: 10 }}
+            onClick={() => connectWallet()}>
+            {walletConnected ? "Connected" : "Connect Wallet"}
+          </button>
+          {walletConnected && (
+            <button
+              className="home-button"
+              style={{ ...styles.ButtonStyledStyle, marginLeft: 10 }}
+              onClick={() => disconnectWallet()}>
+              Logout
+            </button>
+          )}
+          <h1>Quickstart Inbox </h1>
+          <span>See in mobile for a mobile layout</span>
 
-      <FloatingInbox env="production" isConsent={true} />
-    </div>
+          <section className="App-section">
+            <button
+              className="home-button"
+              style={styles.ButtonStyledStyle}
+              onClick={() => window.FloatingInbox.open()}>
+              Open
+            </button>
+            <button
+              className="home-button"
+              style={{ ...styles.ButtonStyledStyle, marginLeft: 10 }}
+              onClick={() => window.FloatingInbox.close()}>
+              Close
+            </button>
+          </section>
+        </div>
+      )}
+
+      <FloatingInbox
+        env={process.env.REACT_APP_XMTP_ENV}
+        wallet={signer}
+        isPWA={isPWA}
+        isConsent={true}
+      />
+    </>
   );
 };
-
 export default InboxPage;

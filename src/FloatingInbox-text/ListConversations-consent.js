@@ -104,6 +104,7 @@ export const ListConversations = ({
     const allowed = filteredConversations.filter(
       (conversation) => conversation.consentState === "allowed",
     );
+    console.log(allowed.length);
     const requests = filteredConversations.filter(
       (conversation) =>
         conversation.consentState === "unknown" ||
@@ -133,7 +134,7 @@ export const ListConversations = ({
             padding: "5px",
           }}
           onClick={() => setActiveTab("allowed")}>
-          ← Allowed
+          <div style={styles.conversationDetails}>← Allowed</div>
         </button>
       ) : (
         <button
